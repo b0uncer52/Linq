@@ -116,6 +116,12 @@ namespace linq
                 Console.WriteLine($"Bank {g.Bank} has {g.Cust.Count()} millionaires"); 
                 Console.WriteLine(string.Join(", ", g.Cust));
             }
+            
+            var grouped = customers.Where(c => c.Balance >= 1000000)
+                                .GroupBy(d => d.Bank);
+            foreach(var potato in grouped) {
+                Console.WriteLine($"{potato.Key} {potato.Count()}");
+            }
 
             var millionaireReport = from c in customers
                 where c.Balance >= 1000000
